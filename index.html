@@ -21,7 +21,7 @@
 
     .intro {
       position: absolute;
-      background: #ffffff;
+      background: #ffffff URL(/assets/images/background.png) repeat;
       z-index: 100;
       top: 0;
       left: 0;
@@ -29,8 +29,27 @@
       height: 100%;
       text-align: center;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: center;
+    }
+
+    .intro > div {
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      margin: 50px;
+    }
+
+    .intro img {
+      margin: 40px;
+    }
+
+    button {
+      background: none;
+      font-size: 2rem;
+      cursor: pointer;
+      border: none;
+      outline: none;
     }
 
     .death {
@@ -80,8 +99,11 @@
 
 <body>
   <div id="content"></div>
-  <div class="intro hide">
-    <h1>GRAV-RAT</h1>
+  <div class="intro">
+    <div>
+      <img src="/assets/images/logo.png" width="300px" alt="GRAV-RAT" />
+      <button id="startButton">Start</button>
+     </div>
   </div>
 
   <div class="death hide">
