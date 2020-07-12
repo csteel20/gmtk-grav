@@ -3,17 +3,22 @@ import Phaser from 'phaser'
 import BootScene from './scenes/Boot'
 import SplashScene from './scenes/Splash'
 import GameScene from './scenes/Game'
+import GlowFilterPipelinePlugin from 'phaser3-rex-plugins/plugins/glowfilterpipeline-plugin.js';
 
 import config from './config'
 
 const introBox = document.getElementsByClassName("intro")[0];
-const nameBox = document.getElementById("name");
-const alreadyPlayed = document.getElementsByClassName("alreadyPlayed")[0];
-const newUser = document.getElementsByClassName("newUser")[0];
-const userName = document.getElementsByClassName("userName")[0];
+
 
 const gameConfig = Object.assign(config, {
-  scene: [BootScene, SplashScene, GameScene]
+  scene: [BootScene, SplashScene, GameScene],
+  plugins: {
+    global: [{
+        key: 'rexGlowFilterPipeline',
+        plugin: GlowFilterPipelinePlugin,
+        start: true
+    }]
+  }
 })
 
 class Game extends Phaser.Game {

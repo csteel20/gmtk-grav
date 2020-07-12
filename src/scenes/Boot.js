@@ -17,15 +17,8 @@ export default class extends Phaser.Scene {
     this.load.image('gameTiles', 'assets/images/tiles-extruded.png');
     this.load.spritesheet('player', 'assets/images/guy.png', { frameWidth: 128, frameHeight: 128 });
     this.load.image('backgroundTiles', 'assets/images/background.png')
-    this.load.image('tombstone', 'assets/images/tombstone.png');
     this.load.image('hole', 'assets/images/mousehole.png');
-    
-    this.load.image('box', 'assets/images/trash-box.png');
     this.load.image('paper', 'assets/images/trash-paper.png');
-    this.load.image('bag', 'assets/images/trash-bag.png');
-    this.load.image('shoe', 'assets/images/trash-shoe.png');
-
-    this.load.image('ghost', 'assets/images/ghost.png');
 
     this.load.audio('jump', 'assets/sounds/jump.wav');
     this.load.audio('death', 'assets/sounds/death.wav');
