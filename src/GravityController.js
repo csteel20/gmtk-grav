@@ -80,7 +80,7 @@ class GravityController {
      * my milkshake brings all the boys to the yard
      */
     shake() {
-        this.cameras.main.shake(400, 0.02, false, (camera, progressAmount) => {
+        this.cameras.main.shake(400, 0.012, false, (camera, progressAmount) => {
           this.isShaking = progressAmount < 1;
         });
       }
