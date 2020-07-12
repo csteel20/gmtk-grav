@@ -26,7 +26,10 @@ class Game extends Phaser.Game {
     super(gameConfig)
   }
 }
+document.getElementById("startButton").addEventListener("click", (e) => {
+  e.preventDefault();
+  introBox .classList.add("hide");
+});
 
-introBox .classList.add("hide");
 window.game = new Game();
 
