@@ -19,17 +19,6 @@ export default class extends Phaser.Scene {
   preload() { }
 
   create() {
-    const customPipeline = this.plugins.get('rexGlowFilterPipeline').add(this, 'GlowFilter');
-    
-    this.tweens.add({
-      targets: customPipeline,
-      intensity: 0.03,
-      ease: 'Linear',
-      duration: 600,
-      repeat: -1,
-      yoyo: true,
-    });
-
     // create the player sprite    
     this.player = this.physics.add.sprite(200, 400, 'player').setSize(50, 128)
     
@@ -86,6 +75,23 @@ export default class extends Phaser.Scene {
   }
 
   setupLevel() {
+    let customPipeline;
+
+    if(!this.game.renderer.hasPipeline('GlowFilter')){
+      customPipeline = this.plugins.get('rexGlowFilterPipeline').add(this, 'GlowFilter');
+    } else {
+      customPipeline = this.game.renderer.getPipeline('GlowFilter')
+    }
+
+    this.tweens.add({
+      targets: customPipeline,
+      intensity: 0.03,
+      ease: 'Linear',
+      duration: 600,
+      repeat: -1,
+      yoyo: true,
+    });
+
     LevelManager.getLevel()
     this.map = this.add.tilemap(LevelManager.getLevel());
     const tileset = this.map.addTilesetImage('tiles', 'gameTiles');
