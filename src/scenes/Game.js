@@ -19,8 +19,20 @@ export default class extends Phaser.Scene {
   preload() { }
 
   create() {
+    const customPipeline = this.plugins.get('rexGlowFilterPipeline').add(this, 'GlowFilter');
+    
+    this.tweens.add({
+      targets: customPipeline,
+      intensity: 0.03,
+      ease: 'Linear',
+      duration: 600,
+      repeat: -1,
+      yoyo: true,
+    });
+
     // create the player sprite    
-    this.player = this.physics.add.sprite(200, 400, 'player').setSize(50, 128);
+    this.player = this.physics.add.sprite(200, 400, 'player').setSize(50, 128)
+    
     this.player.setBounce(0); // our player will bounce from items
     this.player.setCollideWorldBounds(true); // don't go out of the map
     
@@ -100,9 +112,8 @@ export default class extends Phaser.Scene {
 
     // the player will collide with this layer
     this.groundLayer.setCollisionByExclusion([-1]);
+    this.obstaclesLayer = this.map.createStaticLayer('obstacles', tileset).setPipeline('GlowFilter');
 
-
-    this.obstaclesLayer = this.map.createStaticLayer('obstacles', tileset);
     this.groundLayer.setCollisionByProperty({ collides: true });
 
     this.physics.add.overlap(this.player, this.obstaclesLayer);
@@ -112,8 +123,7 @@ export default class extends Phaser.Scene {
       this.die();
     });
 
-
-    const makeTrash = 120;  //get it?
+    const makeTrash = 120;
     const trashArray = [];
     const spread = 3000;
     const trashOptions = ['paper']
@@ -122,7 +132,6 @@ export default class extends Phaser.Scene {
       trashArray.push(
         this.physics.add.sprite(Math.random() * spread, Math.random() * spread, todaysTrash)
       )
-      //trashArray[i].tint = 0x00ffff;
       trashArray[i].setScale(Math.random() / 2)
       this.physics.add.collider(this.groundLayer, trashArray[i]);
     }
@@ -134,11 +143,6 @@ export default class extends Phaser.Scene {
 
 
     this.physics.add.overlap(this.player, this.goal, this.win.bind(this));
-
-
-    // this.physics.add.overlap(this.player, this.ghosts, (sprite) =>{
-    //   this.die(sprite);
-    // });
 
     // set the boundaries of our game world
     this.physics.world.bounds.width = this.groundLayer.width;
