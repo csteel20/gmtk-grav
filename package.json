@@ -33,7 +33,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "gsap": "^3.4.0",
+    "gsap": "^3.6.0",
     "phaser": "^3.23.0",
     "phaser3-rex-plugins": "^1.1.19",
     "webfontloader": "^1.6.28"
